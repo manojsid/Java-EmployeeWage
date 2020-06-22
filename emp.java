@@ -4,13 +4,33 @@ class emp{
 		int is_Present=1;
 		int salary;
 		int wagePerHr=20;
-		int fulltime=8;
+		int fulltime_hrs=8;
+		int parttime_hrs=4;
+		int parttime=1;
+		int fulltime=2;
 		double random_Check=Math.floor(Math.random() * 10) % 2;
-			if (random_Check==is_Present) {
-				System.out.println("Employee is present");
-				salary=wagePerHr*fulltime;
-				System.out.println(salary);
-			}
+		double random_Check_2=Math.floor(Math.random() * 10) % 3;
+
+
+				if (random_Check==is_Present) {
+				//System.out.println("Employee is present");
+				if (random_Check_2==parttime) {
+					System.out.println("Yes...!, Employee is present and he is parttime");
+					salary=wagePerHr*parttime_hrs;
+					System.out.println("And he owned salary of Rs"+salary);
+				}
+				else if (random_Check_2==fulltime) {
+				System.out.println("Yes...!, Employee is present and he is FULLTIME");
+				salary=wagePerHr*fulltime_hrs;
+				System.out.println("And owned salary of Rs"+salary);
+				}	
+
+			else{
+				System.out.println("absent");
+				} 
+
+				}
+				
 	else {
 		System.out.println("Employee is absent");
 	}
