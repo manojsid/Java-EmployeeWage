@@ -1,16 +1,18 @@
 class emp{
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee wage caluclation using Java");
-		int is_Present=1;
-		int salaryp=0;
-		int salaryf=0;
 		int wagePerHr=20;
 		int hrs=0;
 		int total_working_days=20;
-		int salary_per_month=0;
+		int salary=0;
 		int max_working_days=20;
+		int max_working_hrs=0;
+		int total_salary=0;
 		
 		for ( int i=0;i<=max_working_days;i++) {
+		if (max_working_hrs<100) {
+			
+		
 		double random_Check_2=Math.floor(Math.random() * 10) % 3;
 		int random=(int)random_Check_2;	
 		
@@ -19,29 +21,32 @@ class emp{
 				case 1:
 				System.out.println("Yes...!, Employee is present and he is parttime");
 				hrs=4;
-				int pp=wagePerHr*hrs;
-				salaryp=pp+salaryp;
-
+				salary=wagePerHr*hrs;
+				System.out.println("parttime salary of employee is: "+salary);
 				break;
 				case 2:
 				System.out.println("Yes...!, Employee is present and he is fulltime");
 				hrs=8;
-				int ff=wagePerHr*hrs;
-				salaryf=salaryf+ff;
+				salary=wagePerHr*hrs;
+				System.out.println("fulltime salary of employee is: "+salary);
 				break;
 				default:
+				hrs=0;
+				salary=0;
 				System.out.println("Employee is absent");
 
 
 			}
+			total_salary=total_salary+salary;
+			System.out.println("Total salary till now: " +total_salary);
+			max_working_hrs=max_working_hrs+hrs;
+			System.out.println("Total working hours till now: "+max_working_hrs);
+		}
 
 			
 			
 
 }
-			System.out.println("Monthly salary of parttime employee is "+salaryp);
-			System.out.println("Montly salary of fulltime employee is"+salaryf);
-			//salary_per_month=total_working_days*salary;
 			//System.out.println("Employee wage for month is: "+salary_per_month);
 
 
