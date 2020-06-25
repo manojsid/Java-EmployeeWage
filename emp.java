@@ -11,8 +11,6 @@ class emp{
 		
 		for ( int i=0;i<=max_working_days;i++) {
 		if (max_working_hrs<100) {
-			
-		
 		double random_Check_2=Math.floor(Math.random() * 10) % 3;
 		int random=(int)random_Check_2;	
 		
@@ -40,7 +38,7 @@ class emp{
 			total_salary=total_salary+salary;
 			System.out.println("Total salary till now: " +total_salary);
 			max_working_hrs=max_working_hrs+hrs;
-			System.out.println("Total working hours till now: "+max_working_hrs);
+			System.out.println("Total working hours till now:  "+max_working_hrs);
 		}
 
 			
