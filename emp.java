@@ -42,11 +42,10 @@ class emp{
 			max_working_hrs=max_working_hrs+hrs;
 			System.out.println("Total working hours till now: "+max_working_hrs);
 		}
-
-			
-			
+		
 
 }
+System.out.println("Total Wage For Employee in a month: "+ total_salary);
 			//System.out.println("Employee wage for month is: "+salary_per_month);
 
 
