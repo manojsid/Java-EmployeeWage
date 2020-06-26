@@ -1,11 +1,20 @@
 class emp{
 	public static final int Is_Parttime=1;
 	public static final int Is_Fulltime=2;
-	//public static final int wagePerHr=20;
-	//public static final int number_of_working_days=20;
-	//public static final int max_hrs_in_month=100;
 
-		public static int employee_comp(String company, int wagePerHr, int number_of_working_days, int max_hrs_in_month){
+	private final String company;
+	private final int wagePerHr;
+	private final int number_of_working_days;
+	private final int max_hrs_in_month;
+	private int totalEmpWage;
+
+		public emp(String company, int wagePerHr, int number_of_working_days, int max_hrs_in_month){
+			this.company=company;
+			this.wagePerHr=wagePerHr;
+			this.number_of_working_days=number_of_working_days;
+			this.max_hrs_in_month=max_hrs_in_month;
+		}
+		public void wage_compute(){
 		int hrs=0, total_hrs=0, totalWorkingDays=0;
 		while (total_hrs <= max_hrs_in_month && totalWorkingDays < number_of_working_days){
 		totalWorkingDays++;
@@ -22,17 +31,22 @@ class emp{
 				hrs=0;
 			}
 			total_hrs+=hrs;
-			System.out.println("Day#: " + totalWorkingDays + " Emp Hr: " +hrs);
+			System.out.println("Day->: " + totalWorkingDays + " Emp Hr: " +hrs);
 		}
-		int totalEmpWage=total_hrs*wagePerHr;
-		System.out.println("Total Emp wage for Company: " +company+" is: "+totalEmpWage);
-		return totalEmpWage;
+		totalEmpWage=total_hrs*wagePerHr;
 		}
+		public String toString(){
+			return "Total emp wage for company: " +company+ "is :" +totalEmpWage;
+}
 
 public static void main(String[] args) {
 	System.out.println("Welcome to Employee wage caluclation using Java");
-	employee_comp("Dmart", 20, 2, 10);
-	employee_comp("Reliance", 10, 4, 20);
+	emp google=new emp("google", 20, 2, 10);
+	emp Wallmart=new emp("Wallmart", 20, 10, 20);
+	google.wage_compute();
+	System.out.println(google);
+	Wallmart.wage_compute();
+	System.out.println(Wallmart);
 
 }
 }
