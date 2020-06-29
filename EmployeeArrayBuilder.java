@@ -12,6 +12,7 @@ public class EmployeeArrayBuilder implements ComputingWage{
 		companyToEmpWageMap=new HashMap<>();
 	}
 
+
 	public void addCompanyEmpWage(String company, int wagePerHr, int number_of_working_days, int max_hrs_in_month){
 		CompanyEmpSalary companyEmpSalary=new CompanyEmpSalary(company, wagePerHr, number_of_working_days, max_hrs_in_month);
 		companyEmpWageList.add(companyEmpSalary);
@@ -46,7 +47,7 @@ public class EmployeeArrayBuilder implements ComputingWage{
 		default:
 		hrs=0;
 		}
-			total_hrs+=hrs;
+			total_hrs=total_hrs+hrs;
 			System.out.println("***Day->: ***" + totalWorkingDays + " Emp Hr: " + hrs);
 		}
 		return total_hrs * companyEmpSalary.wagePerHr;
