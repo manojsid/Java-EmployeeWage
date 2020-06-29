@@ -1,27 +1,38 @@
-public class EmployeeArrayBuilder{
+import java.util.*;
+public class EmployeeArrayBuilder implements ComputingWage{
 	public static final int Is_Parttime=1;
 	public static final int Is_Fulltime=2;
 
 	private int numberOfCompany=0;
-	private CompanyEmpSalary[] companyEmpWageArray;
-
+	private LinkedList<CompanyEmpSalary> companyEmpWageList;
+	private Map<String,CompanyEmpSalary> companyToEmpWageMap;
+	
 	public EmployeeArrayBuilder(){
-		companyEmpWageArray=new CompanyEmpSalary[5];
+		companyEmpWageList=new LinkedList<>();
+		companyToEmpWageMap=new HashMap<>();
 	}
-	private void addCompanyEmpWage(String company, int wagePerHr, int number_of_working_days, int max_hrs_in_month){
-		companyEmpWageArray[numberOfCompany]=new CompanyEmpSalary(company, wagePerHr, number_of_working_days, max_hrs_in_month);
-		numberOfCompany++;
+
+	public void addCompanyEmpWage(String company, int wagePerHr, int number_of_working_days, int max_hrs_in_month){
+		CompanyEmpSalary companyEmpSalary=new CompanyEmpSalary(company, wagePerHr, number_of_working_days, max_hrs_in_month);
+		companyEmpWageList.add(companyEmpSalary);
+		companyToEmpWageMap.put(company, companyEmpSalary);
+
 	}
-	private void computeWage(){
-		for (int i=0;i< numberOfCompany ; i++) {
-			companyEmpWageArray[i].setTotalempwage(this.computeWage(companyEmpWageArray[i]));
-			System.out.println(companyEmpWageArray[i]);
+	public void computeWage(){
+		for (int i=0;i< companyEmpWageList.size() ; i++) {
+			CompanyEmpSalary companyEmpSalary=companyEmpWageList.get(i);
+			companyEmpSalary.setTotalempwage(this.computeWage(companyEmpSalary));
+			System.out.println(companyEmpSalary);
 		}
 	}
 
-	private int computeWage(CompanyEmpSalary Emmp){
+	public int getTotalWage(String company){
+		return companyToEmpWageMap.get(company).totalEmpWage;
+	}
+
+	public int computeWage(CompanyEmpSalary companyEmpSalary){
 	int hrs=0, total_hrs=0, totalWorkingDays=0;
-	while (total_hrs <= Emmp.max_hrs_in_month && totalWorkingDays < Emmp.number_of_working_days){
+	while (total_hrs <= companyEmpSalary.max_hrs_in_month && totalWorkingDays < companyEmpSalary.number_of_working_days){
 	totalWorkingDays++;
 	double random_Check_2=Math.floor(Math.random() * 10) % 3;
 	int random=(int)random_Check_2;	
@@ -38,13 +49,17 @@ public class EmployeeArrayBuilder{
 			total_hrs+=hrs;
 			System.out.println("***Day->: ***" + totalWorkingDays + " Emp Hr: " + hrs);
 		}
-		return total_hrs * Emmp.wagePerHr;
+		return total_hrs * companyEmpSalary.wagePerHr;
 		}
 		public static void main(String[] args) {
-			EmployeeArrayBuilder arrbuilder = new EmployeeArrayBuilder();
-			arrbuilder.addCompanyEmpWage("google", 20, 2, 10);
-			arrbuilder.addCompanyEmpWage("Wallmart", 10, 4, 20);
+			ComputingWage arrbuilder=new EmployeeArrayBuilder();
+			//EmployeeArrayBuilder arrbuilder = new EmployeeArrayBuilder();
+			arrbuilder.addCompanyEmpWage("google", 20, 2, 10 );
+			//arrbuilder.addCompanyEmpWage( company: "Wallmart", wagePerHr: 10, number_of_working_days: 4, max_hrs_in_month: 20 );
+			arrbuilder.addCompanyEmpWage( "Wallmart", 10, 4, 20 );
 			arrbuilder.computeWage();
+			System.out.println("Total wage for Google company: " + arrbuilder.getTotalWage("Google"));
 		}
+
 
 }
