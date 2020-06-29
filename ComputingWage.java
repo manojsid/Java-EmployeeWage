@@ -1,4 +1,9 @@
-class emp{
+public interface ComputingWage{
+	public void addCompanyEmpWage(String company, int wagePerHr, int number_of_working_days, int max_hrs_in_month);
+	public void computeWage();
+	public int getTotalWage(String company);
+}
+class CompanyEmpSalary{
 	
 	public final String company;
 	public final int wagePerHr;
@@ -6,7 +11,7 @@ class emp{
 	public final int max_hrs_in_month;
 	public int totalEmpWage;
 
-		public emp(String company, int wagePerHr, int number_of_working_days, int max_hrs_in_month){
+		public CompanyEmpSalary(String company, int wagePerHr, int number_of_working_days, int max_hrs_in_month){
 			this.company=company;
 			this.wagePerHr=wagePerHr;
 			this.number_of_working_days=number_of_working_days;
